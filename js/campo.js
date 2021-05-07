@@ -12,24 +12,6 @@
 // // con difficoltà 2 => tra 1 e 5
 
 
-// // var askedNum = parseInt(prompt('inserisci un numero da 1 a 100'))
-
-
-// var arrBomb = [];
-// var arrUserNumber = [];
-
-// while (arrBomb.length < 16 ) { // continuo a provare finchè arrBomb ha 16 numeri unici
-//     var randomNumber =  getRandomInt(1, 100); // genero un n. casuale
-   
-//     if ( !arrBomb.includes(randomNumber) ) { // controllo se non (!) è incluso
-//         arrBomb.push(randomNumber);
-//     }
-// }
-//  console.log('end:', arrBomb); 
-
- // chiedere un numero all'utente > controllare se non è duplicato > controllare se il numeroUtente è presente nell' arrBomb
-
-
 /*
   nota -> Esercizio dato da Andrea C.
   esercizio: 
@@ -48,64 +30,71 @@ while (numeriUtente.length < 4) {
     var inserisciNum = parseInt(prompt('inserisci un numero da 1 a 100'));
     if (!numeriUtente.includes(inserisciNum)){
         numeriUtente.push(inserisciNum);
+    } else if (isNaN) {
+        parseInt(prompt('ERRORE inserisci un numero da 1 a 100'));
     }
 }
 console.log(numeriUtente, "l'unghezza array: " + numeriUtente.length);
 
+// ------------redo on 06/05-----------
 
 
+/*  */
 
-// var gameOver = false;
+// var difficulty = parseInt(prompt('inserisci la difficoltà:\n 1 - normal \n 2 - hard \n 0 - easy'))
 
-//  while(gameOver != true) {
-//      var userNumber = parseInt(prompt('inserisci un numero da 1 a 100'));
-
-//     if( arrBomb.includes(userNumber)) {
-//         // l'utente ha perso
-//         gameOver = true;
-//     } else {
-//         if( ! arrUserNumber.includes(userNumber) && userNumber > 1 && userNumber <= 100) {
-//             arrUserNumber.push(userNumber);
-//         }
-
-//     }
+// switch (difficulty) {
+//     case 2:
+//         var hard = 20;
+//         break;
+//     case 1:
+//         var normal = 80;
+//         break;
+//     default:
+//         var easy = 100;
+//         break;
 // }
 
 
-//------------FUNCTION-----------------
-
-//random number
-// function getRandomInt(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-// }
+/* */
 
 
-    
+var arrBomb = [];
+var tentativi = [];
+var maxAttempt = 4;
+
+while (arrBomb.length < 16) {
+    randomInt = getRndInteger(1,100);
+    if (!arrBomb.includes(randomInt)) {
+        arrBomb.push(randomInt);
+    }
+}
+console.log(arrBomb);
+
+var gameOver = false;
+while (gameOver == false) {
+    var insertNum = parseInt(prompt('inserisci un numero da 1 a 100'));
+    if (insertNum >= 1 && insertNum <= 100 && !tentativi.includes(insertNum) ) {
+        tentativi.push(insertNum);
+    }
+    if (arrBomb.includes(insertNum)) {
+        gameOver = true;
+    }
+    if (tentativi.length == maxAttempt ) {
+        gameOver = true;
+        alert('Hai vinto');
+    }
+}
+console.log(tentativi);
+console.log(maxAttempt);
+console.log(arrBomb.length);
 
 
-// function checkInArray(element, array) {
-    
-//     for(var i=0; i < array.length; i++) {
-//         if(element == array[i]) {
-//             return true
-//         } else {
-//             return 'non trovato'
-//         }
-//     }
-// }
-// console.log(checkInArray(insertNum, arrBomb));
+// ----------FUNCTIONS--------------
 
-
-
-
-
-
-// while...
-// var c = 0;
-// while (c < 5) { // se questa condizione è false, esco dal ciclo
-//     console.log('ciao');
-//     c++;
-// }
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 
 
 
